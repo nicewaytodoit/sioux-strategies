@@ -1,0 +1,23 @@
+{
+  "name": "2_nodejs",
+  "version": "1.0.0",
+  "description": "NodeJs with Express simple example serving HTML pages",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "nodejs",
+    "express",
+    "html",
+    "host"
+  ],
+  "author": "Aleksandar Ristevski",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4",
+    "serve-favicon": "^2.5.0"
+  }
+}

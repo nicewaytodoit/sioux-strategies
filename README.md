@@ -20,7 +20,7 @@ Three "applications" (T-800, T-1000, SkyNet) will map to specific folders but in
 
 + /                 (SkyNet index.html)
     + T-800/        (T-800 index.html)
-    + T-1000/       (T-800 index.html)
+    + T-1000/       (T-1000 index.html)
 
 Check example: `1_plain_old_folders`
 
@@ -31,13 +31,61 @@ Check example: `1_plain_old_folders`
  > serving "." at http://127.0.0.1:8080
 ```
 
-
+Problem with this strutucture is that we need to have strict folder structure, URLs are mapped to hard drive and 404 pages is not defind if we specifically do not tell our hosting engine to do so.
 
 ### 2) Calling NodeJs for help
 
+
+```bash
+$ cd 2_nodejs
+$ npm init
+$ npm install express --save
+$ touch app.js
+```
+
+```javascript
+const express = require('express');
+const app = express();
+const path = require('path');
+
+const port = 8000;
+const rootRoute = '/';
+const t800Route = '/t-800';
+const t1000Route = '/t-1000';
+
+app.get(rootRoute, function(req, res) {
+    res.sendFile(path.join(__dirname, 'skynet', '/index.html'));
+});
+
+app.get(t800Route, function(req, res) {
+    res.sendFile(path.join(__dirname, 't-800', '/index.html'));
+});
+
+app.get(t1000Route, function(req, res) {
+    res.sendFile(path.join(__dirname, 't-1000', '/index.html'));
+});
+
+app.listen(port);
+
+console.log(`Hosting at http://localhost:${port}`);
+```
+
+Final touch we will resolve `favicon.ico` file. 
+Install following package `npm i --save serve-favicon` and then add these two lines:
+
+```
+var favicon = require('serve-favicon');
+app.use(favicon(path.join(__dirname,  'skynet', 'favicon.ico')));
+```
+
+This solution is allowing us to have what ever folder we want and in that way we can separate concerns.
+Later on if we want to change urls it we do not need to move folder we only need to change routing rules.
 
 ### 3) Different Folders and Nginx routing
 
 
 ### 4) React SPAs and packages
 
+
+
+## Security Cookies / Token sharing 
