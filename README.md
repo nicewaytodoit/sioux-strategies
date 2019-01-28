@@ -82,7 +82,24 @@ This solution is allowing us to have what ever folder we want and in that way we
 Later on if we want to change urls it we do not need to move folder we only need to change routing rules.
 
 ### 3) Different Folders and Nginx routing
+http://nginx.org/en/docs/http/request_processing.html
 
+```nginx
+server {
+  listen 80 default_server;
+  listen [::]:80 default_server;
+
+  root /var/www/3_nginx;
+
+  index index.html;
+
+  server_name localhost;
+
+  location / {
+    try_files $uri $uri/ =404;
+  }
+}
+```
 
 ### 4) React SPAs and packages
 
