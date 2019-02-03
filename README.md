@@ -103,6 +103,41 @@ server {
 
 ### 4) React SPAs and packages
 
+Created in 
++ 4_reacts
+    + apps - applications
+    + hosting - builds
 
+PUBLIC_URL=/t-800
+
+### 5 Apache server
+
+https://www.apachelounge.com/download/
+
+unzip
+mkdir apache root 
+copy conent of Apache to c:/apache
+
+adjust confi
+c:\apache\conf\httpd.conf 
+
+
+Define SRVROOT "c:/apache"
+ServerAdmin admin@localhost
+ServerName localhost:80
+DocumentRoot "${SRVROOT}/htdocs"
+<Directory "${SRVROOT}/htdocs">
+ScriptAlias /cgi-bin/ "${SRVROOT}/cgi-bin/"
+
+cd apache\bin
+httpd -k install
+httpd -k start
+~Private netowr, su as my home or work network 
+-public network 
+
+apache Monitor 
+
+KeyThing except of PUBLIC_URL is to adjust Aliases in apache and access to specific folders ...
 
 ## Security Cookies / Token sharing 
+
